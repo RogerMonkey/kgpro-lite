@@ -21,7 +21,7 @@ class Delete(object):
         return self.db['triple'].delete_many({'hid' : hid})
 
     def delete_triple_by_tail_id(self, tid):
-        return self.db['triple'].delete_many({'tid', tid})
+        return self.db['triple'].delete_many({'tid': tid})
 
     def delte_triple_by_json(self, json):
         return self.db['triple'].delete_many(json)
@@ -30,18 +30,15 @@ class Delete(object):
         return self.db['triple'].delete_many({'rid': rid})
 
     def delete_entity_by_id(self, id):
-        try:
-            self.db['node'].deleteOne({'id': id})
-            self.delete_triple_by_head_id(id)
-            self.delete_triple_by_tail_id(id)
-            self.delete_attribute_by_entity_id(id)
-        except:
-            return False
+        self.db['node'].delete_one({'id': id})
+        self.delete_triple_by_head_id(id)
+        self.delete_triple_by_tail_id(id)
+        self.delete_attribute_by_entity_id(id)
         return True
 
     def delete_relation_by_id(self, id):
         try:
-            self.db['relation'].deleteOne({'id' : id})
+            self.db['relation'].delete_one({'id':id})
             self.delete_triple_by_relation_id(id)
         except:
             return False

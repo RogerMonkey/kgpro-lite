@@ -1,0 +1,43 @@
+<div class="content-header">
+	<h2 class="content-title">实体查询</h2>
+	<span class="layui-breadcrumb">
+	  <a href="#!home">首页</a>
+	  <a><cite>实体查询</cite></a>
+	</span>
+</div>
+
+<div>
+	<div class="layui-form toolbar">
+		<form id="editForm" class="layui-form">
+			<div class="layui-col-xs4">
+				<input name="head" placeholder="请输入实体" type="text" class="layui-input" required />
+			</div>
+			<div class="layui-col-xs4">
+				<input name="relation" placeholder="请输入关系" type="text" class="layui-input" required />
+			</div>
+			<div class="layui-col-xs4">
+				<input name="tail" placeholder="请输入实体" type="text" class="layui-input" required />
+			</div>
+			<button id="searchBtn" class="layui-btn" lay-filter="btnSubmit" lay-submit><i class="layui-icon">&#xe615;</i>查询</button>
+		</form>
+	</div>
+
+	<div class="layui-row">
+    <div class="layui-col-xs5">
+		<form id="logForm" class="layui-form model-form" action="">
+			<a><br>查询结果：</a>
+			<textarea name="for" placeholder="" class="layui-textarea" style="height:200px; weight=100px"></textarea>
+		</form>
+
+    </div>
+    <div class="layui-col-xs7">
+		<div class="layui-form toolbar"><a><br>图谱展示:</a></div>
+		<canvas id="my_canvas" width="500" height="400" />
+      <!--<div class="grid-demo">6/12</div>-->
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="assets/js/system/triple.js"></script>
+<script type="text/javascript" src="assets/js/graph/springy.js"></script>
+<script type="text/javascript" src="assets/js/graph/springyui.js"></script>

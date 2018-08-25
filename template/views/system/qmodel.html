@@ -1,0 +1,76 @@
+<div class="content-header">
+	<h2 class="content-title">KRL模型管理</h2>
+	<span class="layui-breadcrumb">
+	  <a href="#!home">首页</a>
+	  <a><cite>KRL模型管理</cite></a>
+	</span>
+</div>
+
+<div>
+	<div class="layui-form toolbar">
+		<button id="addBtn" class="layui-btn search-btn"><i class="layui-icon">&#xe654;</i>训练</button>
+	</div>
+
+	<table class="layui-table" id="table" lay-filter="table"></table>
+</div>
+
+<!-- 表单弹窗 -->
+<script type="text/html" id="addModel">
+	<form id="editForm" class="layui-form model-form" action="">
+		<div class="layui-form-item">
+			<label class="layui-form-label">模型名</label>
+ 			<div class="layui-input-block">
+				<input name="name" placeholder="请输入模型名" type="text" class="layui-input" maxlength="20" lay-verify="required" required />
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">模型</label>
+ 			<div class="layui-input-block">
+				<select name="model" lay-verify="required">
+					<option value="">-请选择-</option>
+					<option value="TransE">TransE</option>
+					<option value="TransH">TransH</option>
+					<option value="TransR">TransR</option>
+					<option value="ETRL">ETRL</option>
+				</select>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">参数</label>
+ 			<div class="layui-input-block">
+				<textarea name="pars" placeholder="ex:{'dims':100, 'iters':1000}" class="layui-textarea" maxlength="200"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item model-form-footer">
+			<button class="layui-btn layui-btn-primary" type="button" id="btnCancel">取消</button>
+			<button class="layui-btn" lay-filter="btnSubmit" lay-submit>确认</button>
+		</div>
+	</form>
+</script>
+
+
+<script type="text/html" id="logModel">
+	<form id="logForm" class="layui-form model-form" action="">
+		<div class="layui-form-item">
+			<label class="layui-form-label">log</label>
+ 			<div class="layui-input-block">
+				<textarea name="log" placeholder="" class="layui-textarea" maxlength="200" height="500px"></textarea>
+			</div>
+		</div>
+	</form>
+</script>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="barTpl">
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">查看日志</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<!-- 角色select模板 -->
+<!--<script id="rolesSelect" type="text/html">-->
+<!--<option value="">-请选择-</option>-->
+<!--{{#  layui.each(d, function(index, item){ }}-->
+<!--<option value="{{ item.roleId }}">{{ item.roleName }}</option>-->
+<!--{{#  }); }}-->
+<!--</script>-->
+<script type="text/javascript" src="assets/js/system/qmodel.js"></script>

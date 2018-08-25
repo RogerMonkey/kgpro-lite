@@ -56,22 +56,21 @@ class Query(object):
         #
         # print(e_triple.count())
         for e in e_triple:
+            # print(e)
             rel = self.query_relation_by_id(e['rid'])[0]['name']
-            tail = [{'id': cur['id'], 'name': cur['name']} for cur in self.query_node_by_id(e['tid'])]
-            tri[rel] = tail
+            tname = self.query_node_by_id(e['tid'])[0]
+            tail = {'id': tname['id'], 'name': tname['name']}
+            if rel not in tri:
+                tri[rel] = [tail]
+            else:
+                if len(tri[rel]) < 3:
+                    tri[rel].append(tail)
         e_base['rels'] = tri
-
+        # print(tri)
         return e_base
 
 if __name__ == '__main__':
-    q = Query('192.168.10.158', 27017, 'testkg')
-    import datetime
-    for j in range(1000):
-        begin = datetime.datetime.now()
-        for i in range(1):
-            cur = q.query_entity_by_id(2000008)
-            # print(cur)
-        end = datetime.datetime.now()
-        print(end - begin)
+    # q = Query('192.168.10.158', 27017, 'testkg')
+    pass
     # for c in cur:
     #     print(c)

@@ -308,20 +308,23 @@ class CommonService(object):
                 return build_respond(1, '查询成功，返回结果如下', 1, result)
 
     def querySingleService(self, json):
-        if json['type'] == 'entity' or json['type'] == 'concept' and json['class'] == 'id':
+        if json['type'] == 'entity'and json['class'] == 'id':
             try:
                 return build_respond(1, '查询成功', 1, [self.query.query_entity_by_id(json['key'])])
             except:
                 return build_respond(0, '未找到指定目标！')
 
-        if json['type'] == 'entity' or json['type'] == 'concept' and json['class'] == 'name':
-            entites = self.query.query_node_by_name(json['key'])
+        if json['type'] == 'entity' and json['class'] == 'name':
+            entites = self.query.query_node_by_name(json['key'])[0]
             result = []
-            for entity in entites:
-                try:
-                    result.append(self.query.query_entity_by_id(entity['id']))
-                except:
-                    result.append({'name': entity['name'], 'result': False})
+            print(entites)
+            result.append(self.query.query_entity_by_id(entites['id']))
+            print(result)
+            # for entity in entites:
+                # try:
+                #     result.append(self.query.query_entity_by_id(entity['id']))
+                # except:
+                #     result.append({'name': entity['name'], 'result': False})
 
             return build_respond(1, '查询成功', 1, result)
 
